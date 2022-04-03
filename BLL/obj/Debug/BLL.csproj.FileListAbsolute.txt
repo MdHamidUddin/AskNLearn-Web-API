@@ -1,0 +1,16 @@
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\BLL\bin\Debug\BLL.exe.config
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\BLL\bin\Debug\BLL.exe
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\BLL\bin\Debug\BLL.pdb
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\BLL\bin\Debug\DAL.exe
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\BLL\bin\Debug\EntityFramework.dll
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\BLL\bin\Debug\DAL.pdb
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\BLL\bin\Debug\DAL.exe.config
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\BLL\bin\Debug\EntityFramework.xml
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\BLL\obj\Debug\BLL.csproj.CopyComplete
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\BLL\obj\Debug\BLL.exe
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\BLL\obj\Debug\BLL.pdb
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\BLL\bin\Debug\AutoMapper.dll
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\BLL\bin\Debug\AutoMapper.pdb
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\BLL\bin\Debug\AutoMapper.xml
