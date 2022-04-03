@@ -1,0 +1,13 @@
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\DAL\bin\Debug\DAL.exe.config
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\DAL\bin\Debug\DAL.exe
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\DAL\bin\Debug\DAL.pdb
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\DAL\bin\Debug\EntityFramework.dll
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\DAL\bin\Debug\EntityFramework.xml
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\DAL\obj\Debug\DAL.csproj.CopyComplete
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\DAL\obj\Debug\DAL.exe
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\DAL\obj\Debug\DAL.pdb
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\DAL\bin\Debug\AutoMapper.dll
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\DAL\bin\Debug\AutoMapper.pdb
+E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\DAL\bin\Debug\AutoMapper.xml
