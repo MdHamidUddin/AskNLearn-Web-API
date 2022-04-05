@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0fea3bd8ca81405d9b3ebcb521fddad7" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="AskNLearnModel.Comment" Width="1.5" PointX="8.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AskNLearnModel.Cours" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AskNLearnModel.Document" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AskNLearnModel.EnrolledUser" Width="1.5" PointX="8.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AskNLearnModel.Mark" Width="1.5" PointX="7.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="AskNLearnModel.Post" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AskNLearnModel.Quize" Width="1.5" PointX="5.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AskNLearnModel.User" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AskNLearnModel.UsersInfo" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
+        <AssociationConnector Association="AskNLearnModel.FK_Comments_Posts" ManuallyRouted="false" />
+        <AssociationConnector Association="AskNLearnModel.FK_Comments_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="AskNLearnModel.FK_Courses_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="AskNLearnModel.FK_Documents_Courses" ManuallyRouted="false" />
+        <AssociationConnector Association="AskNLearnModel.FK_EnrolledUser_Courses" ManuallyRouted="false" />
+        <AssociationConnector Association="AskNLearnModel.FK_Quizes_Courses" ManuallyRouted="false" />
+        <AssociationConnector Association="AskNLearnModel.FK_EnrolledUser_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="AskNLearnModel.FK_Marks_EnrolledUser" ManuallyRouted="false" />
+        <AssociationConnector Association="AskNLearnModel.FK_Marks_Quizes" ManuallyRouted="false" />
+        <AssociationConnector Association="AskNLearnModel.FK_Posts_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="AskNLearnModel.FK_UsersInfo_UsersInfo" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
