@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace DAL.Interface.Admin
 {
-    public interface IAdmin<X, ID>
+    public interface IPost<X, ID>
     {
-        X Get(ID uid);
-        List<X> Get();
+        string Posts();
+
     }
 }
