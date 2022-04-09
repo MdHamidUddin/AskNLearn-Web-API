@@ -1,4 +1,7 @@
-﻿using DAL.Repos;
+﻿
+using DAL.Interface.Admin;
+using DAL.Repos;
+using DAL.Repos.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +18,16 @@ namespace DAL
         {
             return new UsersRepo(dbObj);
         }
+        public static IPost<Post, int> GetRecentPost()
+        {
+            return new PostRepo(dbObj);
+        }
+
+        public static ICourses<Cours, int> GetRecentCourses()
+        {
+            return new CoursesRepo(dbObj);
+        }
+
+
     }
 }

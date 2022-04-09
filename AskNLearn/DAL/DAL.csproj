@@ -52,6 +52,7 @@
     <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
@@ -80,7 +81,9 @@
     <Compile Include="EnrolledUser.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="IAdmin.cs" />
+    <Compile Include="Interface\Admin\IAdmin.cs" />
+    <Compile Include="Interface\Admin\ICourses.cs" />
+    <Compile Include="Interface\Admin\IPost.cs" />
     <Compile Include="Mark.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -106,6 +109,8 @@
     <Compile Include="Quize.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repos\Admin\CoursesRepo.cs" />
+    <Compile Include="Repos\Admin\PostRepo.cs" />
     <Compile Include="Repos\UsersRepo.cs" />
     <Compile Include="User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -142,5 +147,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
