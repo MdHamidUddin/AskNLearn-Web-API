@@ -1,9 +1,9 @@
-﻿
-using DAL.Interface.Admin;
-using DAL.Interface.Users;
+﻿using DAL.Interface.Admin;
+using DAL.Interface.IUser;
 using DAL.Repos;
 using DAL.Repos.Admin;
-using DAL.Repos.Users;
+using DAL.Repos.IUser;
+using DAL.Repos.UserRepo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +38,11 @@ namespace DAL
         public static IAddUser<UsersInfo> AddUserInfo()
         {
             return new AddUserInfoRepo(dbObj);
+        }
+
+        public static IDeleteUser<User>DeleteUser()
+        {
+            return new Delete(dbObj);
         }
 
 
