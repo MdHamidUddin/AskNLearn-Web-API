@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web.Hosting;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Script.Serialization;
@@ -24,6 +25,7 @@ namespace AskNLearn_WebAPI.Controllers
         //    return Request.CreateResponse(HttpStatusCode.OK, st);
         //}
 
+
         //[HttpGet]
         //[Route("api/User/{id}")]
         //public HttpResponseMessage Get(int id)
@@ -32,6 +34,7 @@ namespace AskNLearn_WebAPI.Controllers
         //    //var d = new JavaScriptSerializer().Deserialize<List<UsersModel>>(data);
         //    return Request.CreateResponse(HttpStatusCode.OK, data);
         //}
+
 
         [HttpGet]
         [Route("api/users/{uid}")]
@@ -49,7 +52,6 @@ namespace AskNLearn_WebAPI.Controllers
             var data = AdminServices.Get();
             var d = new JavaScriptSerializer().Deserialize<List<UsersListModel>>(data);
             return Request.CreateResponse(HttpStatusCode.OK, d);
-
         }
 
         //[HttpGet]
@@ -74,6 +76,40 @@ namespace AskNLearn_WebAPI.Controllers
         //    var data = AdminServices.AllInstructor();
         //    return Request.CreateResponse(HttpStatusCode.OK, data);
         //}
+
+
+        //Create User 
+        [HttpPost]
+        [Route("api/AddUser")]
+        public HttpResponseMessage Post(AddUserModel user)
+        {
+            var User = new JavaScriptSerializer().Serialize(user);
+            var data = AdminServices.AddUser(User);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
+
+        //public void BuildEmailTemplate(int uid)
+        //{
+        //    string body = System.IO.File.ReadAllText(HostingEnvironment.MapPath("~/EmailTemplate/") + "Text" + ".cshtml");
+        //    var regInfo = dbObj.Users.Where(x => x.uid == uid).FirstOrDefault();
+        //    var url = "https://localhost:44343/" + "Register/Confirm?regId=" + uid;
+        //    body = body.Replace("@ViewBag.ConfirmationLink", url);
+        //    body = body.ToString();
+        //    BuildEmailTemplate("Your Account is Successfully Created", body, regInfo.email, uname);
+        //}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -137,9 +173,6 @@ namespace AskNLearn_WebAPI.Controllers
 
             List<RecentCoursesModel> LS = new List<RecentCoursesModel>();
             RecentCoursesModel obj = new RecentCoursesModel();
-
-           
-
             return Request.CreateResponse(HttpStatusCode.OK, d);
         }
 
