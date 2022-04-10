@@ -21,6 +21,7 @@ namespace DAL
             this.EnrolledUsers = new HashSet<EnrolledUser>();
             this.Posts = new HashSet<Post>();
             this.UsersInfoes = new HashSet<UsersInfo>();
+            this.TokenAccesses = new HashSet<TokenAccess>();
         }
     
         public int uid { get; set; }
@@ -40,5 +41,6 @@ namespace DAL
         public virtual ICollection<EnrolledUser> EnrolledUsers { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<UsersInfo> UsersInfoes { get; set; }
+        public virtual ICollection<TokenAccess> TokenAccesses { get; set; }
     }
 }

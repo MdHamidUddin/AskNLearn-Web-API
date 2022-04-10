@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0fea3bd8ca81405d9b3ebcb521fddad7" Name="Diagram1" ZoomLevel="64">
+      <Diagram DiagramId="0fea3bd8ca81405d9b3ebcb521fddad7" Name="Diagram1" ZoomLevel="55">
         <EntityTypeShape EntityType="AskNLearnModel.Comment" Width="1.5" PointX="8.25" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="AskNLearnModel.Cours" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AskNLearnModel.Document" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
@@ -25,6 +25,8 @@
         <AssociationConnector Association="AskNLearnModel.FK_Marks_Quizes" ManuallyRouted="false" />
         <AssociationConnector Association="AskNLearnModel.FK_Posts_Users" ManuallyRouted="false" />
         <AssociationConnector Association="AskNLearnModel.FK_UsersInfo_UsersInfo" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AskNLearnModel.TokenAccess" Width="1.5" PointX="3" PointY="6.125" />
+        <AssociationConnector Association="AskNLearnModel.FK_TokenAccess_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

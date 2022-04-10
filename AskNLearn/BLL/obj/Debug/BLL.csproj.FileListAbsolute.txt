@@ -21,3 +21,26 @@ E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\AskNLearn\BLL\bin\Debug
 E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\AskNLearn\BLL\bin\Debug\System.Web.Http.Cors.xml
 E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\AskNLearn\BLL\bin\Debug\AutoMapper.dll
 E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\AskNLearn\BLL\bin\Debug\AutoMapper.xml
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\bin\Debug\BLL.dll
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\bin\Debug\BLL.pdb
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\bin\Debug\AutoMapper.dll
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\bin\Debug\DAL.dll
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\bin\Debug\Newtonsoft.Json.dll
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\bin\Debug\System.Net.Http.Formatting.dll
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\bin\Debug\System.Web.Cors.dll
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\bin\Debug\System.Web.Http.Cors.dll
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\bin\Debug\System.Web.Http.dll
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\bin\Debug\EntityFramework.dll
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\bin\Debug\DAL.pdb
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\bin\Debug\DAL.dll.config
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\bin\Debug\AutoMapper.xml
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\bin\Debug\Newtonsoft.Json.xml
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\bin\Debug\System.Net.Http.Formatting.xml
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\bin\Debug\System.Web.Http.xml
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\bin\Debug\System.Web.Http.Cors.xml
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\bin\Debug\EntityFramework.xml
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\obj\Debug\BLL.csproj.CopyComplete
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\obj\Debug\BLL.dll
+D:\Study Zone\.net\Final Project\AskNLearn\BLL\obj\Debug\BLL.pdb

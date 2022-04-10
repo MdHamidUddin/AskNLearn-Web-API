@@ -80,6 +80,16 @@
     <Property Name="questionLink" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="totalMarks" Type="varchar" MaxLength="500" Nullable="false" />
   </EntityType>
+  <EntityType Name="TokenAccess">
+    <Key>
+      <PropertyRef Name="tid" />
+    </Key>
+    <Property Name="tid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="uid" Type="int" Nullable="false" />
+    <Property Name="Token" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="ExpiredAt" Type="datetime" />
+  </EntityType>
   <EntityType Name="Users">
     <Key>
       <PropertyRef Name="uid" />
@@ -226,6 +236,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TokenAccess_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="TokenAccess" Type="Self.TokenAccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="uid" />
+      </Principal>
+      <Dependent Role="TokenAccess">
+        <PropertyRef Name="uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_UsersInfo_UsersInfo">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="UsersInfo" Type="Self.UsersInfo" Multiplicity="*" />
@@ -246,6 +268,7 @@
     <EntitySet Name="Marks" EntityType="Self.Marks" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Quizes" EntityType="Self.Quizes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TokenAccess" EntityType="Self.TokenAccess" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UsersInfo" EntityType="Self.UsersInfo" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Comments_Posts" Association="Self.FK_Comments_Posts">
@@ -287,6 +310,10 @@
     <AssociationSet Name="FK_Quizes_Courses" Association="Self.FK_Quizes_Courses">
       <End Role="Courses" EntitySet="Courses" />
       <End Role="Quizes" EntitySet="Quizes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TokenAccess_Users" Association="Self.FK_TokenAccess_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TokenAccess" EntitySet="TokenAccess" />
     </AssociationSet>
     <AssociationSet Name="FK_UsersInfo_UsersInfo" Association="Self.FK_UsersInfo_UsersInfo">
       <End Role="Users" EntitySet="Users" />
