@@ -84,7 +84,8 @@
     <Compile Include="Interface\Admin\IAdmin.cs" />
     <Compile Include="Interface\Admin\ICourses.cs" />
     <Compile Include="Interface\Admin\IPost.cs" />
-    <Compile Include="Interface\Users\IAddUser.cs" />
+    <Compile Include="Interface\IUser\IAddUser.cs" />
+    <Compile Include="Interface\IUser\IDeleteUser.cs" />
     <Compile Include="Mark.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -113,8 +114,9 @@
     <Compile Include="Repos\Admin\CoursesRepo.cs" />
     <Compile Include="Repos\Admin\PostRepo.cs" />
     <Compile Include="Repos\UsersRepo.cs" />
-    <Compile Include="Repos\Users\AddUserInfoRepo.cs" />
-    <Compile Include="Repos\Users\AddUserRepo.cs" />
+    <Compile Include="Repos\UserRepo\AddUserInfoRepo.cs" />
+    <Compile Include="Repos\UserRepo\AddUserRepo.cs" />
+    <Compile Include="Repos\UserRepo\Delete.cs" />
     <Compile Include="User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

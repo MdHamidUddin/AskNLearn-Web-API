@@ -54,6 +54,24 @@ namespace AskNLearn_WebAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, d);
         }
 
+        [HttpGet]
+        [Route("api/users/delete/{id}")]
+        public HttpResponseMessage DeleteUsers(int id)
+        {
+            var data = AdminServices.DeleteUser(id);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
+
+        [HttpPost]
+        [Route("api/UpdateUser")]
+        public HttpResponseMessage Update(AddUserModel user)
+        {
+            var User = new JavaScriptSerializer().Serialize(user);
+            var data = AdminServices.UpdateUser(User);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+
         //[HttpGet]
         //[Route("api/InstructorList")]
         //public HttpResponseMessage InstructorList()

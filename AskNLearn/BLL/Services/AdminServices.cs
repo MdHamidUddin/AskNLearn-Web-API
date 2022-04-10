@@ -159,6 +159,44 @@ namespace BLL.Services
             return p;
         }
 
+        public static string DeleteUser(int id)
+        {
+            var data = AdminDataAccessFactory.DeleteUser().DeleteUser(id);
+            return data;
+        }
+        public static string UpdateUser(string U)
+        {
+
+            var d = new JavaScriptSerializer().Deserialize<AddUserModel>(U);
+            User u = new User();
+            UsersInfo ui = new UsersInfo();
+            DateTime localDate = DateTime.Now;
+
+            u.name = d.name;
+            u.username = d.username;
+            u.email = d.username;
+            u.password = d.password;
+            u.dob = d.dob;
+            u.gender = d.gender;
+            u.userType = d.userType;
+            u.proPic = d.proPic;
+            u.approval = d.approval;
+            u.dateTime = localDate;
+
+
+            var UU = AdminDataAccessFactory.AddUser().UpdateUser(u);
+            //var NewUser = new JavaScriptSerializer().Deserialize<User>(UU);
+
+            //ui.uid = NewUser.uid;
+            ui.eduInfo = d.eduInfo;
+            ui.currentPosition = d.currentPosition;
+            ui.reputation = d.reputation;
+
+            var AddUI = AdminDataAccessFactory.AddUserInfo().UpdateUser(ui);
+            return "Updated Success";
+
+        }
+
         public static string AddUser(string U)
         {
             var d = new JavaScriptSerializer().Deserialize<AddUserModel>(U);
