@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Entities\Admin\AddUserModel.cs" />
     <Compile Include="Entities\Admin\RecentCoursesModel.cs" />
     <Compile Include="Entities\Admin\RecentPostModel.cs" />
     <Compile Include="Entities\Admin\UsersInfoModel.cs" />

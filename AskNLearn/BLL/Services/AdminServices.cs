@@ -5,6 +5,7 @@ using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
@@ -13,7 +14,7 @@ namespace BLL.Services
 {
     public class AdminServices
     {
-        
+        AskNLearnEntities dbObj = new AskNLearnEntities();
         //public static UsersModel Get(int id)
         //{
         //    JavaScriptSerializer js = new JavaScriptSerializer();
@@ -156,6 +157,133 @@ namespace BLL.Services
         {
             var p = AdminDataAccessFactory.GetRecentCourses().RecentCourses();
             return p;
+        }
+
+        public static string AddUser(string U)
+        {
+            var d = new JavaScriptSerializer().Deserialize<AddUserModel>(U);
+            User u = new User();
+            UsersInfo ui = new UsersInfo();
+            DateTime localDate = DateTime.Now;
+
+            u.name = d.name;
+            u.username = d.username;
+                u.email = d.username;
+                u.password = d.password;
+                u.dob = d.dob;
+                u.gender = d.gender;
+                u.userType = d.userType;
+                u.proPic = d.proPic;
+                u.approval = d.approval;
+                 u.dateTime = localDate;
+
+
+                var AddU = AdminDataAccessFactory.AddUser().AddUser(u);
+                var NewUser= new JavaScriptSerializer().Deserialize<User>(AddU);
+
+            ui.uid = NewUser.uid;
+            ui.eduInfo = d.eduInfo;
+            ui.currentPosition = d.currentPosition;
+            ui.reputation = d.reputation;
+
+            var AddUI = AdminDataAccessFactory.AddUserInfo().AddUser(ui);
+
+            //var UI = AddU + AddUI;
+            //var UserAdded = new JavaScriptSerializer().Deserialize<AddUserModel>(UI);
+
+            return "User Added \n";
+            
+        }
+
+        //string UserSerial(string uType)
+        //{
+        //    var UserSerial = 0;
+        //    var uname = "";
+        //    var user = dbObj.Users.Where(x => x.userType.Equals(uType)).ToList();
+        //    var count = dbObj.Users.Where(x => x.userType.Equals(uType)).Count();
+        //    if (count == 0)
+        //    {
+        //        string type = uType.Substring(0, 1);
+        //        uname = type + "1";
+        //    }
+        //    else if (count >= 1)
+        //    {
+        //        foreach (var u in user)
+        //        {
+        //            uname = u.username;
+        //        }
+        //        string type = uname.Substring(0, 1);
+        //        uname = uname.Substring(1, 1);
+        //        UserSerial = Convert.ToInt32(uname);
+        //        UserSerial++;
+        //        uname = Convert.ToString(UserSerial);
+        //        uname = type + uname;
+        //    }
+        //    return uname;
+        //}
+
+        //public void BuildEmailTemplate(int uid)
+        //{
+        //    string body = System.IO.File.ReadAllText(HostingEnvironment.MapPath("~/EmailTemplate/") + "Text" + ".cshtml");
+        //    var regInfo = dbObj.Users.Where(x => x.uid == uid).FirstOrDefault();
+        //    var url = "https://localhost:44343/" + "Register/Confirm?regId=" + uid;
+        //    body = body.Replace("@ViewBag.ConfirmationLink", url);
+        //    body = body.ToString();
+        //    BuildEmailTemplate("Your Account is Successfully Created", body, regInfo.email, uname);
+        //}
+
+        public static void BuildEmailTemplate(string subjectText, string bodyText, string sendTo, string uname)
+        {
+            string from, to, bcc, cc, subject, body;
+            from = "hamiduddin09@gmail.com";
+            to = sendTo.Trim();
+            bcc = "";
+            cc = "";
+            subject = subjectText;
+            StringBuilder sb = new StringBuilder();
+            sb.Append(bodyText);
+            sb.Append(uname);
+            body = sb.ToString();
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress(from);
+            mail.To.Add(new MailAddress(to));
+            if (!string.IsNullOrEmpty(bcc))
+            {
+                mail.Bcc.Add(new MailAddress(bcc));
+
+            }
+
+            if (!string.IsNullOrEmpty(cc))
+            {
+                mail.CC.Add(new MailAddress(cc));
+
+            }
+
+            mail.Subject = subject;
+            mail.Body = body;
+            mail.IsBodyHtml = true;
+            SendEmail(mail);
+        }
+        public static void SendEmail(MailMessage mail)
+        {
+            SmtpClient client = new SmtpClient();
+            client.Host = "smtp.gmail.com";
+            client.Port = 587;
+            client.EnableSsl = true;
+            client.UseDefaultCredentials = false;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.Credentials = new System.Net.NetworkCredential("hamiduddin09@gmail.com", "Neverstoplearning1998");
+            try
+            {
+                client.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+
+
         }
 
 
