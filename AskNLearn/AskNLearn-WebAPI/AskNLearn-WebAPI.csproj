@@ -94,7 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Authentication\CustomAuth.cs" />
+    <Compile Include="Authentication\IntructorAuth.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\InstructorController.cs" />
     <Compile Include="Controllers\UsersController.cs" />

@@ -17,6 +17,7 @@ namespace BLL.Entities.Instructor
         public string details { get; set; }
         [Required]
         public double price { get; set; }
+        //[Required]
         public string thumbnail { get; set; }
     }
 }

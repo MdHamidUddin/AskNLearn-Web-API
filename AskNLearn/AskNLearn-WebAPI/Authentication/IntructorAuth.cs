@@ -6,20 +6,20 @@ using System.Web.Http.Filters;
 
 namespace AskNLearn_WebAPI.Authentication
 {
-    public class CustomAuth : AuthorizationFilterAttribute
+    public class IntructorAuth : AuthorizationFilterAttribute
     {
         public override void OnAuthorization(HttpActionContext actionContext)
         {
             var authHeader = actionContext.Request.Headers.Authorization;
             if (authHeader == null)
             {
-                actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.NotFound, "No token supplied in authorization header");
+                actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.NotFound, "No token supplied in Authorization Header");
 
             }
             else
             {
                 string token = authHeader.ToString();
-                var rs = UserServices.IsAuthenticated(token);
+                var rs = UserServices.InstructorIsAuthenticated(token);
                 if (!rs)
                 {
                     actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized, "Unauthorized Access Or Token Expired");

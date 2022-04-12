@@ -30,12 +30,12 @@ namespace DAL.Repos
             }
         }
 
-        public bool Delete(string id)
+        public bool Delete(string token)
         {
             try
             {
-                var token = db.TokenAccesses.FirstOrDefault(c => c.Token == id);
-                db.TokenAccesses.Remove(token);
+                var tokenRow = db.TokenAccesses.FirstOrDefault(c => c.Token == token);
+                db.TokenAccesses.Remove(tokenRow);
                 db.SaveChanges();
 
                 return true;

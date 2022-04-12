@@ -28,7 +28,7 @@ namespace BLL.Services
             }
             return null;
         }
-        public static bool IsAuthenticated(string token)
+        public static bool InstructorIsAuthenticated(string token)
         {
             var authCheck = DataAccessFactory.AuthDataAccess().IsAuthenticated(token);
             return authCheck;
