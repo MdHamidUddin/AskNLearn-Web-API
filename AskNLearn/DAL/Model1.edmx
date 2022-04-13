@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AskNLearnModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AskNLearnModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Comments">
           <Key>
             <PropertyRef Name="cid" />
@@ -84,6 +84,16 @@
           <Property Name="quizTitle" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="questionLink" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="totalMarks" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TokenAccess">
+          <Key>
+            <PropertyRef Name="tid" />
+          </Key>
+          <Property Name="tid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uid" Type="int" Nullable="false" />
+          <Property Name="Token" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="ExpiredAt" Type="datetime" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -231,6 +241,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TokenAccess_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="TokenAccess" Type="Self.TokenAccess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="uid" />
+            </Principal>
+            <Dependent Role="TokenAccess">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UsersInfo_UsersInfo">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="UsersInfo" Type="Self.UsersInfo" Multiplicity="*" />
@@ -251,6 +273,7 @@
           <EntitySet Name="Marks" EntityType="Self.Marks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Quizes" EntityType="Self.Quizes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TokenAccess" EntityType="Self.TokenAccess" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsersInfo" EntityType="Self.UsersInfo" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Comments_Posts" Association="Self.FK_Comments_Posts">
@@ -293,13 +316,16 @@
             <End Role="Courses" EntitySet="Courses" />
             <End Role="Quizes" EntitySet="Quizes" />
           </AssociationSet>
+          <AssociationSet Name="FK_TokenAccess_Users" Association="Self.FK_TokenAccess_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TokenAccess" EntitySet="TokenAccess" />
+          </AssociationSet>
           <AssociationSet Name="FK_UsersInfo_UsersInfo" Association="Self.FK_UsersInfo_UsersInfo">
             <End Role="Users" EntitySet="Users" />
             <End Role="UsersInfo" EntitySet="UsersInfo" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AskNLearnModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -419,6 +445,7 @@
           <NavigationProperty Name="EnrolledUsers" Relationship="Self.FK_EnrolledUser_Users" FromRole="Users" ToRole="EnrolledUser" />
           <NavigationProperty Name="Posts" Relationship="Self.FK_Posts_Users" FromRole="Users" ToRole="Posts" />
           <NavigationProperty Name="UsersInfoes" Relationship="Self.FK_UsersInfo_UsersInfo" FromRole="Users" ToRole="UsersInfo" />
+          <NavigationProperty Name="TokenAccesses" Relationship="AskNLearnModel.FK_TokenAccess_Users" FromRole="User" ToRole="TokenAccess" />
         </EntityType>
         <EntityType Name="UsersInfo">
           <Key>
@@ -617,7 +644,35 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="UsersInfo" EntitySet="UsersInfoes" />
           </AssociationSet>
+          <EntitySet Name="TokenAccesses" EntityType="AskNLearnModel.TokenAccess" />
+          <AssociationSet Name="FK_TokenAccess_Users" Association="AskNLearnModel.FK_TokenAccess_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="TokenAccess" EntitySet="TokenAccesses" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="TokenAccess">
+          <Key>
+            <PropertyRef Name="tid" />
+          </Key>
+          <Property Name="tid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uid" Type="Int32" Nullable="false" />
+          <Property Name="Token" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExpiredAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="AskNLearnModel.FK_TokenAccess_Users" FromRole="TokenAccess" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_TokenAccess_Users">
+          <End Type="AskNLearnModel.User" Role="User" Multiplicity="1" />
+          <End Type="AskNLearnModel.TokenAccess" Role="TokenAccess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="uid" />
+            </Principal>
+            <Dependent Role="TokenAccess">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -736,6 +791,17 @@
                 <ScalarProperty Name="eduInfo" ColumnName="eduInfo" />
                 <ScalarProperty Name="currentPosition" ColumnName="currentPosition" />
                 <ScalarProperty Name="reputation" ColumnName="reputation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TokenAccesses">
+            <EntityTypeMapping TypeName="AskNLearnModel.TokenAccess">
+              <MappingFragment StoreEntitySet="TokenAccess">
+                <ScalarProperty Name="ExpiredAt" ColumnName="ExpiredAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="tid" ColumnName="tid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

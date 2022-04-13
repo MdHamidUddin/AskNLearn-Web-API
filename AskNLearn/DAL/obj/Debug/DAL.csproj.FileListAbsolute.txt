@@ -19,3 +19,24 @@ E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\AskNLearn\DAL\bin\Debug
 E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\AskNLearn\DAL\bin\Debug\System.Web.Http.Cors.xml
 E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\AskNLearn\DAL\bin\Debug\AutoMapper.dll
 E:\Books_N_Notes\10th_Semester\.NET\FinalProject\BackEnd\AskNLearn\DAL\bin\Debug\AutoMapper.xml
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\bin\Debug\DAL.dll.config
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\bin\Debug\DAL.dll
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\bin\Debug\DAL.pdb
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\bin\Debug\AutoMapper.dll
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\bin\Debug\EntityFramework.dll
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\bin\Debug\Newtonsoft.Json.dll
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\bin\Debug\System.Net.Http.Formatting.dll
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\bin\Debug\System.Web.Cors.dll
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\bin\Debug\System.Web.Http.Cors.dll
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\bin\Debug\System.Web.Http.dll
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\bin\Debug\AutoMapper.xml
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\bin\Debug\EntityFramework.xml
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\bin\Debug\Newtonsoft.Json.xml
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\bin\Debug\System.Net.Http.Formatting.xml
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\bin\Debug\System.Web.Http.xml
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\bin\Debug\System.Web.Http.Cors.xml
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\obj\Debug\DAL.csproj.CopyComplete
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\obj\Debug\DAL.dll
+D:\Study Zone\.net\Final Project\AskNLearn\DAL\obj\Debug\DAL.pdb

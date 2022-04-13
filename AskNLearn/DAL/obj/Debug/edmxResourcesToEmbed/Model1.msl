@@ -116,5 +116,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="TokenAccesses">
+      <EntityTypeMapping TypeName="AskNLearnModel.TokenAccess">
+        <MappingFragment StoreEntitySet="TokenAccess">
+          <ScalarProperty Name="ExpiredAt" ColumnName="ExpiredAt" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="uid" ColumnName="uid" />
+          <ScalarProperty Name="tid" ColumnName="tid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
