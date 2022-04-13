@@ -105,5 +105,18 @@ namespace DAL.Repos
         {
             throw new NotImplementedException();
         }
+
+        public List<User> GetUserByType(string type)
+        {
+            var user = dbObj.Users.Where(x => x.userType.Equals(type)).ToList();
+            //var data1 = new JavaScriptSerializer().Serialize(user);
+            return user;
+        }
+
+        public User GetUserById(int uid)
+        {
+            var user = dbObj.Users.Where(x => x.uid.Equals(uid)).FirstOrDefault();
+            return user;
+        }
     }
 }

@@ -15,26 +15,14 @@ namespace BLL.Services
     public class AdminServices
     {
         AskNLearnEntities dbObj = new AskNLearnEntities();
-        //public static UsersModel Get(int id)
-        //{
-        //    JavaScriptSerializer js = new JavaScriptSerializer();
-
-        //    var u = AdminDataAccessFactory.GetUser().Get(id);
-        //    return new UsersModel()
-        //    {
-        //        uid = u.uid,
-        //        name = u.name,
-        //        username = u.username,
-        //        password = u.password,
-        //        email = u.email,
-        //        approval = u.approval,
-        //        dob = u.dob,
-        //        gender = u.gender,
-        //        userType = u.userType,
-        //        proPic = u.proPic,
-        //        dateTime = u.dateTime
-        //    };
-        //}
+        public static UsersModel GetUserById(int id)
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<User, UsersModel>());
+            var mapper = new Mapper(config);
+            var u = AdminDataAccessFactory.GetUser().GetUserById(id);
+            var Data = mapper.Map<UsersModel>(u);
+            return Data;
+        }
 
         //public static UsersModel Get(int id)
         //{
@@ -197,7 +185,7 @@ namespace BLL.Services
 
         }
 
-        public static string AddUser(string U)
+        public static UsersModel AddUser(string U)
         {
             var d = new JavaScriptSerializer().Deserialize<AddUserModel>(U);
             User u = new User();
@@ -219,6 +207,15 @@ namespace BLL.Services
                 var AddU = AdminDataAccessFactory.AddUser().AddUser(u);
                 var NewUser= new JavaScriptSerializer().Deserialize<User>(AddU);
 
+            //Here i have to map user 
+            //
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<User, UsersModel>());
+            var mapper = new Mapper(config);
+            
+            var Data = mapper.Map<UsersModel>(NewUser);
+
+            //
+
             ui.uid = NewUser.uid;
             ui.eduInfo = d.eduInfo;
             ui.currentPosition = d.currentPosition;
@@ -229,100 +226,24 @@ namespace BLL.Services
             //var UI = AddU + AddUI;
             //var UserAdded = new JavaScriptSerializer().Deserialize<AddUserModel>(UI);
 
-            return "User Added \n";
+            return Data;
             
         }
 
-        //string UserSerial(string uType)
-        //{
-        //    var UserSerial = 0;
-        //    var uname = "";
-        //    var user = dbObj.Users.Where(x => x.userType.Equals(uType)).ToList();
-        //    var count = dbObj.Users.Where(x => x.userType.Equals(uType)).Count();
-        //    if (count == 0)
-        //    {
-        //        string type = uType.Substring(0, 1);
-        //        uname = type + "1";
-        //    }
-        //    else if (count >= 1)
-        //    {
-        //        foreach (var u in user)
-        //        {
-        //            uname = u.username;
-        //        }
-        //        string type = uname.Substring(0, 1);
-        //        uname = uname.Substring(1, 1);
-        //        UserSerial = Convert.ToInt32(uname);
-        //        UserSerial++;
-        //        uname = Convert.ToString(UserSerial);
-        //        uname = type + uname;
-        //    }
-        //    return uname;
-        //}
-
-        //public void BuildEmailTemplate(int uid)
-        //{
-        //    string body = System.IO.File.ReadAllText(HostingEnvironment.MapPath("~/EmailTemplate/") + "Text" + ".cshtml");
-        //    var regInfo = dbObj.Users.Where(x => x.uid == uid).FirstOrDefault();
-        //    var url = "https://localhost:44343/" + "Register/Confirm?regId=" + uid;
-        //    body = body.Replace("@ViewBag.ConfirmationLink", url);
-        //    body = body.ToString();
-        //    BuildEmailTemplate("Your Account is Successfully Created", body, regInfo.email, uname);
-        //}
-
-        public static void BuildEmailTemplate(string subjectText, string bodyText, string sendTo, string uname)
+       public static List<UsersModel> GetUserByType(string UType)
         {
-            string from, to, bcc, cc, subject, body;
-            from = "hamiduddin09@gmail.com";
-            to = sendTo.Trim();
-            bcc = "";
-            cc = "";
-            subject = subjectText;
-            StringBuilder sb = new StringBuilder();
-            sb.Append(bodyText);
-            sb.Append(uname);
-            body = sb.ToString();
-            MailMessage mail = new MailMessage();
-            mail.From = new MailAddress(from);
-            mail.To.Add(new MailAddress(to));
-            if (!string.IsNullOrEmpty(bcc))
-            {
-                mail.Bcc.Add(new MailAddress(bcc));
-
-            }
-
-            if (!string.IsNullOrEmpty(cc))
-            {
-                mail.CC.Add(new MailAddress(cc));
-
-            }
-
-            mail.Subject = subject;
-            mail.Body = body;
-            mail.IsBodyHtml = true;
-            SendEmail(mail);
-        }
-        public static void SendEmail(MailMessage mail)
-        {
-            SmtpClient client = new SmtpClient();
-            client.Host = "smtp.gmail.com";
-            client.Port = 587;
-            client.EnableSsl = true;
-            client.UseDefaultCredentials = false;
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.Credentials = new System.Net.NetworkCredential("hamiduddin09@gmail.com", "Neverstoplearning1998");
-            try
-            {
-                client.Send(mail);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-
-            }
-
+            //var data1 = new JavaScriptSerializer().Serialize(u);
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<User, UsersModel>());
+            var mapper = new Mapper(config);
+            var u = AdminDataAccessFactory.GetUByType().GetUserByType(UType);
+            var Data = mapper.Map<List<UsersModel>>(u);
+            return Data;
 
         }
+
+      
+
+       
 
 
 

@@ -45,6 +45,11 @@ namespace DAL
             return new Delete(dbObj);
         }
 
+        public static IAdmin<User, int> GetUByType()
+        {
+            return new UsersRepo(dbObj);
+        }
+
 
     }
 }

@@ -8,7 +8,7 @@ namespace DAL
 {
     public interface IAdmin<X, ID>
     {
-        //X Get(ID uid);
+        X GetUserById(ID uid);
         string Get(ID uid);
         string Get();
         //List<X> Get();
@@ -20,6 +20,8 @@ namespace DAL
         string LearnersList();
 
         string AdminsList();
+
+        List<X> GetUserByType(string type);
 
 
     }
