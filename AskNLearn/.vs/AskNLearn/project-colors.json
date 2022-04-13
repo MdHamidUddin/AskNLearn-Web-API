@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "aea2df40-e3fb-4746-b132-8a67ba65f77e": {
+      "ProjectGuid": "aea2df40-e3fb-4746-b132-8a67ba65f77e",
+      "DisplayName": "AskNLearn_Console",
+      "ColorIndex": 0
+    },
+    "aadab85f-0959-4be4-a39c-d26644b96602": {
+      "ProjectGuid": "aadab85f-0959-4be4-a39c-d26644b96602",
+      "DisplayName": "AskNLearn-WebAPI",
+      "ColorIndex": 1
+    },
+    "2ca7e941-17ac-4a25-8be8-5c7540f3c5f0": {
+      "ProjectGuid": "2ca7e941-17ac-4a25-8be8-5c7540f3c5f0",
+      "DisplayName": "DAL",
+      "ColorIndex": 2
+    },
+    "e3a47379-c118-4e3a-8b9d-001f2914f848": {
+      "ProjectGuid": "e3a47379-c118-4e3a-8b9d-001f2914f848",
+      "DisplayName": "BLL",
+      "ColorIndex": 3
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 4
+}

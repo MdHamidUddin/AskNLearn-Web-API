@@ -34,5 +34,6 @@ namespace DAL
         public DbSet<Quize> Quizes { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UsersInfo> UsersInfoes { get; set; }
+        public DbSet<TokenAccess> TokenAccesses { get; set; }
     }
 }

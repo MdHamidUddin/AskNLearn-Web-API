@@ -116,6 +116,7 @@
     <NavigationProperty Name="EnrolledUsers" Relationship="Self.FK_EnrolledUser_Users" FromRole="Users" ToRole="EnrolledUser" />
     <NavigationProperty Name="Posts" Relationship="Self.FK_Posts_Users" FromRole="Users" ToRole="Posts" />
     <NavigationProperty Name="UsersInfoes" Relationship="Self.FK_UsersInfo_UsersInfo" FromRole="Users" ToRole="UsersInfo" />
+    <NavigationProperty Name="TokenAccesses" Relationship="AskNLearnModel.FK_TokenAccess_Users" FromRole="User" ToRole="TokenAccess" />
   </EntityType>
   <EntityType Name="UsersInfo">
     <Key>
@@ -314,5 +315,33 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="UsersInfo" EntitySet="UsersInfoes" />
     </AssociationSet>
+    <EntitySet Name="TokenAccesses" EntityType="AskNLearnModel.TokenAccess" />
+    <AssociationSet Name="FK_TokenAccess_Users" Association="AskNLearnModel.FK_TokenAccess_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="TokenAccess" EntitySet="TokenAccesses" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="TokenAccess">
+    <Key>
+      <PropertyRef Name="tid" />
+    </Key>
+    <Property Name="tid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="uid" Type="Int32" Nullable="false" />
+    <Property Name="Token" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExpiredAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User" Relationship="AskNLearnModel.FK_TokenAccess_Users" FromRole="TokenAccess" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_TokenAccess_Users">
+    <End Type="AskNLearnModel.User" Role="User" Multiplicity="1" />
+    <End Type="AskNLearnModel.TokenAccess" Role="TokenAccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="uid" />
+      </Principal>
+      <Dependent Role="TokenAccess">
+        <PropertyRef Name="uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
