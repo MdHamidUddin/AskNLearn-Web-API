@@ -43,6 +43,7 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
@@ -68,18 +69,21 @@
     <Compile Include="Entities\Admin\UsersInfoModel.cs" />
     <Compile Include="Entities\Admin\UsersListModel.cs" />
     <Compile Include="Entities\Admin\UsersModel.cs" />
-
+    <Compile Include="Entities\Instructor\DocumentModel.cs" />
+    <Compile Include="Entities\Instructor\PostModel.cs" />
+    <Compile Include="Entities\Moderator\AddCommentModel.cs" />
+    <Compile Include="Entities\Moderator\AddPostModel.cs" />
+    <Compile Include="Entities\Moderator\CourselistModel.cs" />
     <Compile Include="Entities\Moderator\LearnerlistModel.cs" />
     <Compile Include="Entities\Moderator\PostcommentModel.cs" />
-
     <Compile Include="Entities\Instructor\CourseModel.cs" />
     <Compile Include="Entities\Instructor\InstructorModel.cs" />
     <Compile Include="Entities\TokenModel.cs" />
     <Compile Include="Entities\UserModel.cs" />
-
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminServices.cs" />
     <Compile Include="Services\InstructorServices.cs" />
+    <Compile Include="Services\ModeratorServices.cs" />
     <Compile Include="Services\UserServices.cs" />
   </ItemGroup>
   <ItemGroup>

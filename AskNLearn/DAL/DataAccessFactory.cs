@@ -1,4 +1,5 @@
 ﻿using DAL.Interface;
+using DAL.Interface.Instructor;
 using DAL.Repos;
 using DAL.Repos.Instructor;
 using System;
@@ -23,6 +24,14 @@ namespace DAL
         public static IRepository<User, int> InstructorDataAccess()
         {
             return new InstructorRepo(db);
+        }
+        public static IRepository<Document, int> CourseDocumentDataAccess()
+        {
+            return new DocumentRepo(db);
+        }
+        public static IPost<Post, int> PostDataAccess()
+        {
+            return new PostRepo(db);
         }
     }
 }

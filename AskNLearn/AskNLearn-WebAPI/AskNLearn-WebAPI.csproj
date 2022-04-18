@@ -47,6 +47,9 @@
       <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MultipartDataMediaFormatter, Version=2.1.1.0, Culture=neutral, PublicKeyToken=67148dd0761d95a0, processorArchitecture=MSIL">
+      <HintPath>..\packages\MultipartDataMediaFormatter.V2.2.1.1\lib\net45\MultipartDataMediaFormatter.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
@@ -89,6 +92,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Instructor\Courses\Images\noPropic.jpg" />
+    <Content Include="Content\Instructor\CourseThumbnail\noPropic.jpg" />
+    <Content Include="Content\Instructor\ProPic\noPropic.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -96,8 +102,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Authentication\AdminAuth.cs" />
     <Compile Include="Authentication\IntructorAuth.cs" />
+    <Compile Include="Authentication\ModeratorAuth.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\InstructorController.cs" />
+    <Compile Include="Controllers\ModeratorController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -115,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Instructor\Courses\Documents\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

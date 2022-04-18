@@ -203,7 +203,7 @@ namespace AskNLearn_WebAPI.Controllers
         //    var st = AdminServices.UserList();
         //    return Request.CreateResponse(HttpStatusCode.OK, st);
         //}
-        [AdminAuth]
+     
         [HttpGet]
         [Route("api/admin/recentPost")]
         public HttpResponseMessage RecentPost()
@@ -213,7 +213,7 @@ namespace AskNLearn_WebAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, d);
         }
 
-        [AdminAuth]
+    
         [HttpGet]
         [Route("api/admin/recentCourses")]
         public HttpResponseMessage RecentCourses()

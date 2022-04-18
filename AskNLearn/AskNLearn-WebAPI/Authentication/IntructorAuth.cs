@@ -22,7 +22,7 @@ namespace AskNLearn_WebAPI.Authentication
                 var rs = UserServices.InstructorIsAuthenticated(token);
                 if (!rs)
                 {
-                    actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized, "Unauthorized Access Or Token Expired");
+                    actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized, "Instructor Access Required Or Token Expired");
                 }
             }
             base.OnAuthorization(actionContext);

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MultipartDataMediaFormatter;
+using MultipartDataMediaFormatter.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -20,6 +22,8 @@ namespace AskNLearn_WebAPI
                 defaults: new { id = RouteParameter.Optional }
             );
             config.EnableCors();
+            GlobalConfiguration.Configuration.Formatters.Add
+            (new FormMultipartEncodedMediaTypeFormatter(new MultipartFormatterSettings()));
         }
     }
 }
