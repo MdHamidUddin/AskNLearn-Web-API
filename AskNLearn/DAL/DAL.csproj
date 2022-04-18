@@ -68,7 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminDataAccessFactory.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="Interface\Instructor\IPost.cs" />
+    <Compile Include="Interface\Moderator\IModerator.cs" />
+    <Compile Include="ModeratorDataAccessFactory.cs" />
     <Compile Include="Comment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -85,10 +87,8 @@
     <Compile Include="Interface\Admin\IAdmin.cs" />
     <Compile Include="Interface\Admin\ICourses.cs" />
     <Compile Include="Interface\Admin\IPost.cs" />
-
     <Compile Include="Interface\IUser\IAddUser.cs" />
     <Compile Include="Interface\IUser\IDeleteUser.cs" />
-
     <Compile Include="Interface\IAuth.cs" />
     <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Mark.cs">
@@ -119,15 +119,19 @@
     <Compile Include="Repos\Admin\CoursesRepo.cs" />
     <Compile Include="Repos\Admin\PostRepo.cs" />
     <Compile Include="Repos\AuthRepo.cs" />
+    <Compile Include="Repos\Instructor\CommentRepo.cs" />
     <Compile Include="Repos\Instructor\CourseRepo.cs" />
+    <Compile Include="Repos\Instructor\DocumentRepo.cs" />
     <Compile Include="Repos\Instructor\InstructorRepo.cs" />
+    <Compile Include="Repos\Instructor\PostRepo.cs" />
+    <Compile Include="Repos\Moderator\CommentDelete.cs" />
+    <Compile Include="Repos\Moderator\CourseRepo.cs" />
+    <Compile Include="Repos\Moderator\PostRepo.cs" />
     <Compile Include="Repos\TokenRepo.cs" />
     <Compile Include="Repos\UsersRepo.cs" />
-
     <Compile Include="Repos\UserRepo\AddUserInfoRepo.cs" />
     <Compile Include="Repos\UserRepo\AddUserRepo.cs" />
     <Compile Include="Repos\UserRepo\Delete.cs" />
-
     <Compile Include="TokenAccess.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -166,9 +170,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interface\Instructor\" />
-    <Folder Include="Interface\User\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

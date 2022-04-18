@@ -10,7 +10,8 @@ namespace DAL.Interface
     {
         //TokenAccess Authenticate(string username, string password);
         TokenAccess Authenticate(string username, string password);
-        bool IsAuthenticated(string token);
+        bool InstructorIsAuthenticated(string token);
+        bool ModeratorIsAuthenticated(string token);
         bool Logout(int id);
     }
 }

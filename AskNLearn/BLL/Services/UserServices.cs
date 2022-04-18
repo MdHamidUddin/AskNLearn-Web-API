@@ -30,7 +30,12 @@ namespace BLL.Services
         }
         public static bool InstructorIsAuthenticated(string token)
         {
-            var authCheck = DataAccessFactory.AuthDataAccess().IsAuthenticated(token);
+            var authCheck = DataAccessFactory.AuthDataAccess().InstructorIsAuthenticated(token);
+            return authCheck;
+        }
+        public static bool ModeratorIsAuthenticated(string token)
+        {
+            var authCheck = DataAccessFactory.AuthDataAccess().ModeratorIsAuthenticated(token);
             return authCheck;
         }
         public static bool Logout(int uid)

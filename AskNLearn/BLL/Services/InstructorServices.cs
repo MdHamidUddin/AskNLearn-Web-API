@@ -3,9 +3,12 @@ using BLL.Entities.Instructor;
 using DAL;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http.ModelBinding;
 using System.Web.Script.Serialization;
 
@@ -73,6 +76,8 @@ namespace BLL.Services
                 cm.details = item.details;
                 cm.price = item.price;
                 cm.thumbnail = item.thumbnail;
+                cm.upVote = 0;
+                cm.downVote = 0;
                 cList.Add(cm);
             }
             return cList;
@@ -109,12 +114,24 @@ namespace BLL.Services
             //CourseModel cm = null;
             //var u = DataAccessFactory.CoursDataAccess().Add(cours);
             //join usr in u
+            if (cm.ImageFile != null)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(cm.ImageFile.FileName);
+                string extension = Path.GetExtension(cm.ImageFile.FileName);
+                fileName = cm.title+"-" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + fileName + extension;
+                fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Instructor/CourseThumbnail/"), fileName);
+                cm.thumbnail = fileName;
+                cm.ImageFile.SaveAs(fileName);
+            }
             Cours cours = new Cours()
             {
                 uid = uid,
                 title = cm.title,
                 details = cm.details,
                 price = cm.price,
+                thumbnail = cm.thumbnail,
+                upVote = 0,
+                downVote = 0,
                 dateTime =DateTime.Now
             };
             if (DataAccessFactory.CoursDataAccess().Add(cours))
@@ -151,5 +168,73 @@ namespace BLL.Services
             }
             return false;
         }
+        public static bool AddDocuments(DocumentModel d, int coid)
+        {
+            var videoLink = "";
+                if (d.videoLink != null)
+                {
+                    const string pattern = @"(?:https?:\/\/)?(?:www\.)?(?:(?:(?:youtube.com\/watch\?[^?]*v=|youtu.be\/)([\w\-]+))(?:[^\s?]+)?)";
+                    const string replacement = "https://www.youtube.com/embed/$1";
+                    var rgx = new Regex(pattern);
+                    videoLink = rgx.Replace(d.videoLink, replacement);
+                }
+                //For image Upload
+                if (d.ImageFile != null)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(d.ImageFile.FileName);
+                    string extension = Path.GetExtension(d.ImageFile.FileName);
+                    fileName = d.imageTitle + "-" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + extension;
+                    fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Instructor/Courses/Images/"), fileName);
+                    d.image = fileName;
+                    d.ImageFile.SaveAs(fileName);
+                }
+                //For Documents Upload
+                if (d.DocFile != null)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(d.DocFile.FileName);
+                    string extension = Path.GetExtension(d.DocFile.FileName);
+                    fileName = d.docTitle + "-" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + extension;
+                    fileName = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Instructor/Courses/Documents/"), fileName);
+                    d.docs = fileName;
+                    d.DocFile.SaveAs(fileName);
+                }
+                Document doc = new Document();
+                doc.coid = coid;
+                doc.videoTitle = d.videoTitle;
+                if (!videoLink.Equals(""))
+                {
+                    doc.videoLink = videoLink;
+                }
+                doc.imageTitle = d.imageTitle;
+                doc.image = d.image;
+                doc.docTitle = d.docTitle;
+                doc.docs = d.docs;
+                if (DataAccessFactory.CourseDocumentDataAccess().Add(doc))
+                {
+                    return true;
+                }
+            return false;
+        }
+        public static List<PostModel> PostList()
+        {
+            PostModel pm = null;
+            List<PostModel> cList = new List<PostModel>();
+            var u = DataAccessFactory.PostDataAccess().Get();
+            var data = new JavaScriptSerializer().Deserialize<List<PostModel>>(u);
+            foreach (var item in data)
+            {
+                pm = new PostModel();
+                pm.pid = item.pid;
+                pm.uid = item.uid;
+                pm.PostedBy = item.PostedBy;
+                pm.title = item.title;
+                pm.details = item.details;
+                pm.upVote = 0;
+                pm.downVote = 0;
+                cList.Add(pm);
+            }
+            return cList;
+        }
+
     }
 }

@@ -10,15 +10,15 @@ namespace DAL.Repos.Instructor
 {
     public class CourseRepo : IRepository<Cours, int>
     {
-            //try {
+        //try {
 
-            //return true;
-            //}
-            //catch (Exception)
-            //{
+        //return true;
+        //}
+        //catch (Exception)
+        //{
 
-            //    return false;
-            //}
+        //    return false;
+        //}
         AskNLearnEntities db;
         public CourseRepo(AskNLearnEntities db)
         {
@@ -38,15 +38,47 @@ namespace DAL.Repos.Instructor
                 return false;
             }
         }
+        //public bool AddDocuments(Document obj)
+        //{
+            
+        //}
 
         public bool Delete(int coid)
         {
-            try {
-            var data = db.Courses.Find(coid);
-            db.Courses.Remove(data);
-            db.SaveChanges();
+            try
+            {
+                var data = db.Courses.Find(coid);
+                var documents = db.Documents.Where(value => value.coid == coid).ToList();
+                var quizes = db.Quizes.Where(value => value.coid == coid).ToList();
+                var enrusr = db.EnrolledUsers.Where(value => value.coid == coid).ToList();
+                if (documents != null)
+                {
+                    foreach (var item in documents)
+                    {
+                        db.Documents.Remove(item);
+                        db.SaveChanges();
+                    }
+                }
+                if (quizes != null)
+                {
+                    foreach (var item in quizes)
+                    {
+                        db.Quizes.Remove(item);
+                        db.SaveChanges();
+                    }
+                }
+                if (enrusr != null)
+                {
+                    foreach (var item in enrusr)
+                    {
+                        db.EnrolledUsers.Remove(item);
+                        db.SaveChanges();
+                    }
+                }
+                db.Courses.Remove(data);
+                db.SaveChanges();
 
-            return true;
+                return true;
             }
             catch (Exception)
             {

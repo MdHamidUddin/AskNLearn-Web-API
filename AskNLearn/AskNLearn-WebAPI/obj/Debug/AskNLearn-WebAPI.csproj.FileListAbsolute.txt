@@ -156,3 +156,4 @@ D:\Study Zone\.net\Final Project\AskNLearn\AskNLearn-WebAPI\obj\Debug\AskNLearn-
 D:\Study Zone\.net\Final Project\AskNLearn\AskNLearn-WebAPI\obj\Debug\AskNLearn-WebAPI.csproj.CopyComplete
 D:\Study Zone\.net\Final Project\AskNLearn\AskNLearn-WebAPI\obj\Debug\AskNLearn-WebAPI.dll
 D:\Study Zone\.net\Final Project\AskNLearn\AskNLearn-WebAPI\obj\Debug\AskNLearn-WebAPI.pdb
+D:\Study Zone\.net\Final Project\AskNLearn\AskNLearn-WebAPI\bin\MultipartDataMediaFormatter.dll

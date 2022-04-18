@@ -43,7 +43,7 @@ namespace DAL.Repos
             }
         }
 
-        public bool IsAuthenticated(string token)
+        public bool InstructorIsAuthenticated(string token)
         {
             //DateTime.Compare(t1, t2);
             //Less than zero t1 is earlier than t2.
@@ -63,6 +63,31 @@ namespace DAL.Repos
                 utype = item.userType.ToString();
             }
             if (tokencheck != null && utype.Equals("Instructor"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool ModeratorIsAuthenticated(string token)
+        {
+            var tokencheck = db.TokenAccesses.FirstOrDefault(t => t.Token.Equals(token) && DateTime.Compare((DateTime)t.ExpiredAt, DateTime.Now) > 0);
+            var userType = (from t in db.TokenAccesses
+                            join u in db.Users on t.uid equals u.uid
+                            where t.Token.Equals(token) && u.approval.Equals("active")
+                            select new
+                            {
+                                u.userType
+                            }).ToList();
+            var utype = "";
+            foreach (var item in userType)
+            {
+                utype = item.userType.ToString();
+            }
+            if (tokencheck != null && utype.Equals("Moderator"))
             {
                 return true;
             }
