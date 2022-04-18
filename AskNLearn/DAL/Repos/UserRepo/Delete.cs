@@ -17,15 +17,26 @@ namespace DAL.Repos.UserRepo
         }
         public string DeleteUser(int id)
         {
-            var ui = dbObj.UsersInfoes.Where(x=>x.uid.Equals(id)).FirstOrDefault();
-            var u = dbObj.Users.Where(x => x.uid.Equals(id)).FirstOrDefault();
-            dbObj.UsersInfoes.Remove(ui);
-            dbObj.SaveChanges();
-
-            dbObj.Users.Remove(u);
-            dbObj.SaveChanges();
-
-            return "User Removed!!!";
+         
+            using(AskNLearnEntities db=new AskNLearnEntities())
+            {
+                var ui = db.UsersInfoes.Where(x => x.uid.Equals(id)).FirstOrDefault();
+                var u = db.Users.Where(x => x.uid.Equals(id)).FirstOrDefault();
+                if (ui != null)
+                {
+                    db.UsersInfoes.Remove(ui);
+                    db.SaveChanges();
+                }
+                if (u != null)
+                {
+                    db.Users.Remove(u);
+                    db.SaveChanges();
+                    return "User Removed!!!";
+                }
+            }
+          
+          
+            return "There is some problem !!";
         }
     }
 }

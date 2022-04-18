@@ -72,6 +72,39 @@ namespace DAL.Repos
             }
         }
 
+        public bool IsAdminAuthenticated(string token)
+        {
+            //DateTime.Compare(t1, t2);
+            //Less than zero t1 is earlier than t2.
+            //Zero t1 is the same as t2.
+            //Greater than zero   t1 is later than t2.
+            using (AskNLearnEntities db=new AskNLearnEntities())
+            {
+                var tokencheck = db.TokenAccesses.FirstOrDefault(t => t.Token.Equals(token) && DateTime.Compare((DateTime)t.ExpiredAt, DateTime.Now) > 0);
+                var userType = (from t in db.TokenAccesses
+                                join u in db.Users on t.uid equals u.uid
+                                where t.Token.Equals(token) && u.approval.Equals("active")
+                                select new
+                                {
+                                    u.userType
+                                }).ToList();
+                var utype = "";
+                foreach (var item in userType)
+                {
+                    utype = item.userType.ToString();
+                }
+                if (tokencheck != null && utype.Equals("Admin"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+          
+        }
+
         public bool Logout(int id)
         {
             var data = db.TokenAccesses.FirstOrDefault(t => t.uid == id && DateTime.Compare((DateTime)t.CreatedAt, DateTime.Now) < 0 && DateTime.Compare((DateTime)t.ExpiredAt, DateTime.Now) > 0);
@@ -86,6 +119,17 @@ namespace DAL.Repos
             {
                 return false;
             }
+        }
+
+        public string GetUserType(string username, string password)
+        {
+            var data = db.Users.FirstOrDefault(x => x.username.Equals(username) && x.password.Equals(password));
+            if (data != null)
+            {
+                return data.userType;
+            }
+            else
+                return "No data";
         }
     }
 }

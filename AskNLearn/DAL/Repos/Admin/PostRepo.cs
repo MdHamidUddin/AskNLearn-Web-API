@@ -20,7 +20,7 @@ namespace DAL.Repos.Admin
             var data = (from u in dbObj.Users
                         join ui in dbObj.Posts on u.uid equals ui.uid
                         where (u.uid.Equals(ui.uid))
-                        select new { u.uid, u.name, u.username, u.email, ui.title,ui.details,ui.pid,ui.upVote,ui.downVote}).ToList();
+                        select new { u.uid, u.name, u.username, u.email, ui.title,ui.details,ui.pid,ui.upVote,ui.downVote,ui.dateTime}).ToList();
 
             var data1 = new JavaScriptSerializer().Serialize(data);
             return data1;

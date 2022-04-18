@@ -8,7 +8,7 @@ using System.Web.Script.Serialization;
 
 namespace DAL.Repos.UserRepo
 {
-    public class AddUserInfoRepo : IAddUser<UsersInfo>
+    public class AddUserInfoRepo : IAddUser<UsersInfo,int>
     {
         AskNLearnEntities dbObj;
 
@@ -24,13 +24,17 @@ namespace DAL.Repos.UserRepo
             return "Use Info Added";
         }
 
+        public string GetEmail(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public string UpdateUser(UsersInfo x)
         {
             var ui = dbObj.UsersInfoes.Where(q => q.uid.Equals(x.uid)).FirstOrDefault();
 
             ui.eduInfo = x.eduInfo;
             ui.currentPosition = x.currentPosition;
-            ui.reputation = x.reputation;
             dbObj.SaveChanges();
 
             return "Information Updated";

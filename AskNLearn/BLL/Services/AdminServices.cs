@@ -24,6 +24,12 @@ namespace BLL.Services
             return Data;
         }
 
+        public static string GetEmail(int id)
+        {
+            var Email = AdminDataAccessFactory.AddUser().GetEmail(id);
+            return Email;
+        }
+
         //public static UsersModel Get(int id)
         //{
 
@@ -146,39 +152,69 @@ namespace BLL.Services
             var p = AdminDataAccessFactory.GetRecentCourses().RecentCourses();
             return p;
         }
+        public static string GetPendingUsers()
+        {
+            var p = AdminDataAccessFactory.GetUser().PendingList();
+            return p;
+        }
+        public static string ApproveUser(int uid)
+        {
+            var p = AdminDataAccessFactory.GetUser().ApproveUser(uid);
+            return p;
+        }
+
+        public static string BlockUser(int uid)
+        {
+            var p = AdminDataAccessFactory.GetUser().BlockUser(uid);
+            if (p!=null)
+            {
+                return "User Blocked";
+            }
+            return "Cant Block User";
+        }
+
+        public static string UnblockUser(int uid)
+        {
+            var p = AdminDataAccessFactory.GetUser().UnBlockUser(uid);
+            if (p != null)
+            {
+                return "User Unblocked";
+            }
+            return "Cant Unblock User";
+        }
+
+
 
         public static string DeleteUser(int id)
         {
             var data = AdminDataAccessFactory.DeleteUser().DeleteUser(id);
             return data;
         }
-        public static string UpdateUser(string U)
+        public static string UpdateUser(AddUserModel d)
         {
 
-            var d = new JavaScriptSerializer().Deserialize<AddUserModel>(U);
+            //var d = new JavaScriptSerializer().Deserialize<AddUserModel>(U);
             User u = new User();
             UsersInfo ui = new UsersInfo();
             DateTime localDate = DateTime.Now;
 
+            u.uid = d.uid;
             u.name = d.name;
             u.username = d.username;
-            u.email = d.username;
+            u.email = d.email;
             u.password = d.password;
             u.dob = d.dob;
             u.gender = d.gender;
             u.userType = d.userType;
-            u.proPic = d.proPic;
-            u.approval = d.approval;
             u.dateTime = localDate;
 
 
             var UU = AdminDataAccessFactory.AddUser().UpdateUser(u);
             //var NewUser = new JavaScriptSerializer().Deserialize<User>(UU);
 
-            //ui.uid = NewUser.uid;
+            ui.uid = d.uid;
             ui.eduInfo = d.eduInfo;
             ui.currentPosition = d.currentPosition;
-            ui.reputation = d.reputation;
 
             var AddUI = AdminDataAccessFactory.AddUserInfo().UpdateUser(ui);
             return "Updated Success";
@@ -194,14 +230,14 @@ namespace BLL.Services
 
             u.name = d.name;
             u.username = d.username;
-                u.email = d.username;
-                u.password = d.password;
-                u.dob = d.dob;
-                u.gender = d.gender;
-                u.userType = d.userType;
-                u.proPic = d.proPic;
-                u.approval = d.approval;
-                 u.dateTime = localDate;
+            u.email = d.email;
+            u.password = d.password;
+            u.dob = d.dob;
+            u.gender = d.gender;
+            u.userType = d.userType;
+            //u.proPic = d.proPic;
+            u.approval = "pending";
+            u.dateTime = localDate;
 
 
                 var AddU = AdminDataAccessFactory.AddUser().AddUser(u);
@@ -219,7 +255,7 @@ namespace BLL.Services
             ui.uid = NewUser.uid;
             ui.eduInfo = d.eduInfo;
             ui.currentPosition = d.currentPosition;
-            ui.reputation = d.reputation;
+            //ui.reputation = d.reputation;
 
             var AddUI = AdminDataAccessFactory.AddUserInfo().AddUser(ui);
 

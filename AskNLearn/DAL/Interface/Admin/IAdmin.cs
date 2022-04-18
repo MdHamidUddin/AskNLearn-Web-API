@@ -15,6 +15,7 @@ namespace DAL
 
         X BlockUser( ID id);
         X UnBlockUser(ID id);
+        string ApproveUser(ID id);
         string InstructorsList();
         string ModeratorsList();
         string LearnersList();
@@ -22,6 +23,8 @@ namespace DAL
         string AdminsList();
 
         List<X> GetUserByType(string type);
+
+        string PendingList();
 
 
     }
