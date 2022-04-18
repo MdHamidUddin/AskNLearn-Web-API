@@ -10,6 +10,7 @@ namespace BLL.Entities
     {
         public int tid { get; set; }
         public int uid { get; set; }
+        public string userType { get; set; }
         public string Token { get; set; }
         public System.DateTime CreatedAt { get; set; }
         public Nullable<System.DateTime> ExpiredAt { get; set; }

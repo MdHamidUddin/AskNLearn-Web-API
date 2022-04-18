@@ -1,6 +1,7 @@
 ﻿using DAL.Interface.IUser;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ using System.Web.Script.Serialization;
 
 namespace DAL.Repos.UserRepo
 {
-    public class AddUserRepo : IAddUser<User>
+    public class AddUserRepo : IAddUser<User, int>
     {
         AskNLearnEntities dbObj;
         public AddUserRepo(AskNLearnEntities dbObj)
@@ -18,6 +19,7 @@ namespace DAL.Repos.UserRepo
         }
         public string AddUser(User u)
         {
+            
             dbObj.Users.Add(u);
             dbObj.SaveChanges();
             var User = new JavaScriptSerializer().Serialize(u);
@@ -25,24 +27,30 @@ namespace DAL.Repos.UserRepo
            
         }
 
+        public string GetEmail(int id)
+        {
+            var user = dbObj.Users.FirstOrDefault(x=>x.uid.Equals(id));
+            string Email = user.email;
+            return Email;
+        }
+
         public string UpdateUser(User x)
         {
-            var Use = dbObj.Users.Where(p=>p.email.Equals(x.email)).FirstOrDefault();
-            var ui = dbObj.UsersInfoes.Where(q=>q.uid.Equals(x.uid)).FirstOrDefault();
 
-            Use.name = x.name;
-            Use.username = Use.username ;
-            Use.password = x.password;
-            Use.email = x.email;
-            Use.dob = x.dob;
-            Use.gender = x.gender;
-            Use.proPic = x.proPic;
-            Use.approval = x.approval;
-            Use.dateTime = x.dateTime;
-
-            dbObj.SaveChanges();
-
-            return "Information Updated";        
+            using (AskNLearnEntities db=new AskNLearnEntities())
+            {
+                var obj = db.Users.Where(p => p.uid.Equals(x.uid)).FirstOrDefault();
+                obj.name = x.name;
+                obj.username = x.username;
+                obj.email = x.email;
+                obj.password = x.password;
+                obj.dob = x.dob;
+                obj.gender = x.gender;
+                db.Entry(obj).State = EntityState.Modified;
+                db.SaveChanges();
+                return "Information Updated";
+            }
+                    
         }
     }
 }

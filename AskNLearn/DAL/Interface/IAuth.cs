@@ -9,8 +9,11 @@ namespace DAL.Interface
     public interface IAuth
     {
         //TokenAccess Authenticate(string username, string password);
+        
         TokenAccess Authenticate(string username, string password);
         bool IsAuthenticated(string token);
+        bool IsAdminAuthenticated(string token);
         bool Logout(int id);
+        string GetUserType(string username, string password);
     }
 }

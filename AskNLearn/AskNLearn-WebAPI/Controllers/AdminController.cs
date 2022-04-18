@@ -1,4 +1,5 @@
-﻿using BLL.Entities;
+﻿using AskNLearn_WebAPI.Authentication;
+using BLL.Entities;
 using BLL.Entities.Admin;
 using BLL.Services;
 using System;
@@ -16,6 +17,7 @@ using System.Web.Script.Serialization;
 namespace AskNLearn_WebAPI.Controllers
 {
     [EnableCors("*","*","*")]
+    
     public class AdminController : ApiController
     {
         //[HttpGet]
@@ -37,40 +39,57 @@ namespace AskNLearn_WebAPI.Controllers
         //    return Request.CreateResponse(HttpStatusCode.OK, data);
         //}
 
-
+        [AdminAuth]
         [HttpGet]
-        [Route("api/users/{uid}")]
+        [Route("api/admin/user/{uid}")]
         public HttpResponseMessage AllUsers(int uid)
         {
             var data = AdminServices.Get(uid);
             var d = new JavaScriptSerializer().Deserialize<List<UsersListModel>>(data);
             return Request.CreateResponse(HttpStatusCode.OK, d);
         }
-
+        [AdminAuth]
         [HttpGet]
-        [Route("api/user/")]
+        [Route("api/admin/user/")]
         public HttpResponseMessage Get()
         {
             var data = AdminServices.Get();
             var d = new JavaScriptSerializer().Deserialize<List<UsersListModel>>(data);
             return Request.CreateResponse(HttpStatusCode.OK, d);
         }
-
+        [AdminAuth]
         [HttpGet]
-        [Route("api/users/delete/{id}")]
+        [Route("api/admin/users/delete/{id}")]
         public HttpResponseMessage DeleteUsers(int id)
         {
             var data = AdminServices.DeleteUser(id);
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
+        [AdminAuth]
+        [HttpGet]
+        [Route("api/admin/users/block/{id}")]
+        public HttpResponseMessage Block(int id)
+        {
+            var data = AdminServices.BlockUser(id);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
+        [AdminAuth]
+        [HttpGet]
+        [Route("api/admin/users/unblock/{id}")]
+        public HttpResponseMessage Unblock(int id)
+        {
+            var data = AdminServices.UnblockUser(id);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
+        }
 
 
+        [AdminAuth]
         [HttpPost]
-        [Route("api/UpdateUser")]
+        [Route("api/admin/UpdateUser")]
         public HttpResponseMessage Update(AddUserModel user)
         {
             var User = new JavaScriptSerializer().Serialize(user);
-            var data = AdminServices.UpdateUser(User);
+            var data = AdminServices.UpdateUser(user);
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
@@ -99,7 +118,7 @@ namespace AskNLearn_WebAPI.Controllers
 
 
         //Create User 
-       
+
 
 
         //public void BuildEmailTemplate(int uid)
@@ -125,40 +144,58 @@ namespace AskNLearn_WebAPI.Controllers
 
 
 
-
+        [AdminAuth]
         [HttpGet]
-        [Route("api/Instructors")]
+        [Route("api/admin/Instructors")]
         public HttpResponseMessage InstructorsList()
         {
             var data = AdminServices.Instructors();
             var d = new JavaScriptSerializer().Deserialize<List<UsersListModel>>(data);
             return Request.CreateResponse(HttpStatusCode.OK, d);
         }
+        [AdminAuth]
         [HttpGet]
-        [Route("api/moderators")]
+        [Route("api/admin/moderators")]
         public HttpResponseMessage ModeratorsList()
         {
             var data = AdminServices.Moderators();
             var d = new JavaScriptSerializer().Deserialize<List<UsersListModel>>(data);
             return Request.CreateResponse(HttpStatusCode.OK, d);
         }
-
+        [AdminAuth]
         [HttpGet]
-        [Route("api/learners")]
+        [Route("api/admin/learners")]
         public HttpResponseMessage LearnersList()
         {
             var data = AdminServices.Learners();
             var d = new JavaScriptSerializer().Deserialize<List<UsersListModel>>(data);
             return Request.CreateResponse(HttpStatusCode.OK, d);
         }
-
+        [AdminAuth]
         [HttpGet]
-        [Route("api/admins")]
+        [Route("api/admin/admins")]
         public HttpResponseMessage AdminsList()
         {
             var data = AdminServices.Admins();
             var d = new JavaScriptSerializer().Deserialize<List<UsersListModel>>(data);
             return Request.CreateResponse(HttpStatusCode.OK, d);
+        }
+        [AdminAuth]
+        [HttpGet]
+        [Route("api/admin/pendingusers")]
+        public HttpResponseMessage PendingUser()
+        {
+            var data = AdminServices.GetPendingUsers();
+            var d = new JavaScriptSerializer().Deserialize<List<UsersListModel>>(data);
+            return Request.CreateResponse(HttpStatusCode.OK, d);
+        }
+        [AdminAuth]
+        [HttpPost]
+        [Route("api/admin/approveuser/{uid}")]
+        public HttpResponseMessage ApproveUser(int uid)
+        {
+            var data = AdminServices.ApproveUser(uid);
+            return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
         //public HttpResponseMessage UserList()
@@ -166,8 +203,9 @@ namespace AskNLearn_WebAPI.Controllers
         //    var st = AdminServices.UserList();
         //    return Request.CreateResponse(HttpStatusCode.OK, st);
         //}
+        [AdminAuth]
         [HttpGet]
-        [Route("api/recentPost")]
+        [Route("api/admin/recentPost")]
         public HttpResponseMessage RecentPost()
         {
             var data = AdminServices.GetRecentPost();
@@ -175,9 +213,9 @@ namespace AskNLearn_WebAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, d);
         }
 
-
+        [AdminAuth]
         [HttpGet]
-        [Route("api/recentCourses")]
+        [Route("api/admin/recentCourses")]
         public HttpResponseMessage RecentCourses()
         {
             var data = AdminServices.GetRecentCourses();
@@ -227,16 +265,23 @@ namespace AskNLearn_WebAPI.Controllers
 
 
         //
-
+      
         [HttpPost]
         [Route("api/AddUser")]
         public HttpResponseMessage Post(AddUserModel user)
         {
-            var User = new JavaScriptSerializer().Serialize(user);
-            var data = AdminServices.AddUser(User);
 
-            var NewUserName = USerial("Moderator","hamid");//user.userType,user.username
-            BuildEmailTemplate(data.uid,NewUserName);
+           
+                var NewUserName = USerial(user.userType, user.username);//user.userType,user.username
+                user.username = NewUserName;
+                var User = new JavaScriptSerializer().Serialize(user);
+                var data = AdminServices.AddUser(User);
+                int id = data.uid;
+                BuildEmailTemplate(id, data.username, data.email.ToString());
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+           
+            //var NewData = new JavaScriptSerializer().Deserialize(data,AddUserModel);
+
             return Request.CreateResponse(HttpStatusCode.OK, data);
         }
 
@@ -270,23 +315,30 @@ namespace AskNLearn_WebAPI.Controllers
         }
 
 
-        public void BuildEmailTemplate(int uid,string uname)
+
+        public void BuildEmailTemplate(int id,string uname,string email)
         {
-            string body = "";
+            string body = "Welcome to Ask & Learn. Your User Name Is : ";
             //string body = System.IO.File.ReadAllText(HostingEnvironment.MapPath("~/EmailTemplate/") + "Text" + ".cshtml");
             //var regInfo = dbObj.Users.Where(x => x.uid == uid).FirstOrDefault();
-            var regInfo = AdminServices.GetUserById(uid);
-            var url = "https://localhost:44343/" + "Register/Confirm?regId=" + uid;
-            body = body.Replace("@ViewBag.ConfirmationLink", url);
+            //var regInfo = AdminServices.GetUserById(id);
+
+            string Email = AdminServices.GetEmail(id);
             body = body.ToString();
-            BuildEmailTemplate("Your Account is Successfully Created", body, regInfo.email, uname);
+            BuildEmailTemplate("Your Account is Successfully Created", body,email, uname);
+        }
+        public HttpResponseMessage GetEmail(int uid)
+        {
+            var regInfo = AdminServices.GetUserById(uid);
+            return Request.CreateResponse(HttpStatusCode.OK, regInfo.email);
         }
 
-        public static void BuildEmailTemplate(string subjectText, string bodyText, string sendTo, string uname)
+        public static void BuildEmailTemplate(string subjectText, string bodyText, string email, string uname)
         {
             string from, to, bcc, cc, subject, body;
             from = "hamiduddin09@gmail.com";
-            to = sendTo.Trim();
+            //string Email = AdminServices.GetEmail(id);
+            to = email;
             bcc = "";
             cc = "";
             subject = subjectText;
@@ -300,7 +352,6 @@ namespace AskNLearn_WebAPI.Controllers
             if (!string.IsNullOrEmpty(bcc))
             {
                 mail.Bcc.Add(new MailAddress(bcc));
-
             }
 
             if (!string.IsNullOrEmpty(cc))
@@ -314,6 +365,8 @@ namespace AskNLearn_WebAPI.Controllers
             mail.IsBodyHtml = true;
             SendEmail(mail);
         }
+
+
         public static void SendEmail(MailMessage mail)
         {
             SmtpClient client = new SmtpClient();

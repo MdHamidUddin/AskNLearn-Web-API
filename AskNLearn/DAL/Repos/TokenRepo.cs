@@ -72,5 +72,7 @@ namespace DAL.Repos
         {
             return db.TokenAccesses.ToList();
         }
+
+      
     }
 }

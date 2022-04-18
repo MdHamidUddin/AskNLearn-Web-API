@@ -30,12 +30,12 @@ namespace DAL
             return new CoursesRepo(dbObj);
         }
 
-        public static IAddUser<User> AddUser()
+        public static IAddUser<User,int> AddUser()
         {
             return new AddUserRepo(dbObj);
         }
 
-        public static IAddUser<UsersInfo> AddUserInfo()
+        public static IAddUser<UsersInfo,int> AddUserInfo()
         {
             return new AddUserInfoRepo(dbObj);
         }
